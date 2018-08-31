@@ -11,7 +11,6 @@ client = commands.Bot(description=description, command_prefix=bot_prefix)
 
 #String arrays for reactions
 give_grapes = ['come here grape foxy!']
-gay_strings = ['gay', 'thats gay', 'that\'s gay','you\'re gay']
 choices = [
     "💜**Definitely!**💜",
     "🦊**Maybe**🦊",
@@ -88,11 +87,5 @@ async def on_message(message):
         await client.add_reaction(message, '🍇')
     await client.process_commands(message)
 
-    if message.content.lower() in gay_strings:
-        await client.add_reaction(message, '🌈')
-
-    print(message.content)
-
-
-
 #Token for bot login
+# REDACTED, PUT YOUR BOT'S TOKEN HERE FOR LOGIN
