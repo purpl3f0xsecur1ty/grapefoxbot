@@ -9,8 +9,7 @@ bot_prefix = 'fox!'
 
 client = commands.Bot(description=description, command_prefix=bot_prefix)
 
-#String arrays for reactions
-give_grapes = ['come here grape foxy!']
+# Reactions for the magicball command
 choices = [
     "💜**Definitely!**💜",
     "🦊**Maybe**🦊",
@@ -82,17 +81,13 @@ async def magicball(ctx):
 #Checks for a string and reacts
 @client.event
 async def on_message(message):
-
-    if message.content.lower() in give_grapes:
-        await client.add_reaction(message, '🍇')
-    await client.process_commands(message)
     
     if "grape" in message.content.lower():
         await client.add_reaction(message, "🍇")
 
     if "fox" in message.content.lower():
         await client.add_reaction(message, "🦊")
-
+    await client.process_commands(message) # Without this command the bot will not carry out any commands!!
 
 # Token for bot login
 # Note that this line must come LAST!
