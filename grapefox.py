@@ -86,6 +86,14 @@ async def on_message(message):
     if message.content.lower() in give_grapes:
         await client.add_reaction(message, '🍇')
     await client.process_commands(message)
+    
+    if "grape" in message.content.lower():
+        await client.add_reaction(message, "🍇")
 
-#Token for bot login
-# REDACTED, PUT YOUR BOT'S TOKEN HERE FOR LOGIN
+    if "fox" in message.content.lower():
+        await client.add_reaction(message, "🦊")
+
+
+# Token for bot login
+# Note that this line must come LAST!
+client.run('YOUR TOKEN HERE')
