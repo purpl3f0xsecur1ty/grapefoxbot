@@ -126,4 +126,4 @@ async def on_message(message):
 
 # Token for bot login
 # Note that this line must come LAST!
-client.run('MzMzMTIzNzAzMjY3MjYyNDY2.DEIFNA.2pz7W133xpbZgt5R4DBIj_4CiSc')
+client.run('')
