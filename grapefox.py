@@ -57,7 +57,7 @@ async def on_ready():
     print('Name : {}'.format(client.user.name))
     print('ID : {}'.format(client.user.id))
     print(discord.__version__)
-    for server in client.servers:  # List connected servers
+    for server in client.guilds:  # List connected servers
         print('Joined: {}'.format(server.name))
 
 
@@ -65,7 +65,7 @@ async def on_ready():
 
 @client.command(pass_context=True)
 async def info(ctx):
-    await client.say("I am grape fox!\n"
+    await ctx.send("I am grape fox!\n"
                      "Author: **Zepher-Tensho**\n"
                      "Written in **Python 3.6**\n"
                      "For a list of current commands type `!commands`"
@@ -73,15 +73,15 @@ async def info(ctx):
 
 @client.command(pass_context=True)
 async def boop(ctx):
-    await client.say('*Sneezes*')
+    await ctx.send('*Sneezes*')
 
 @client.command(pass_context=True)
 async def program(ctx):
-    await client.say('Program me daddy uwu')
+    await ctx.send('Program me daddy uwu')
 
 @client.command(pass_context=True)
 async def commands(ctx):
-    await client.say("Current commands:\n"
+    await ctx.send("Current commands:\n"
                      "fox!info - Prints info about the bot\n"
                      "fox!boop - Boop the snoot!\n"
                      "fox!dice - Roll between 1 and 6 grapes~!\n"
@@ -92,36 +92,36 @@ async def commands(ctx):
 async def dice(ctx):
     dice = random.randint(1,12)
     if dice == 1:
-        await client.say("Grape foxy drops " + str(dice) + " grape")
+        await ctx.send("Grape foxy drops " + str(dice) + " grape")
     else:
-        await client.say("Grape foxy drops " + str(dice) + " grapes")
+        await ctx.send("Grape foxy drops " + str(dice) + " grapes")
 
 @client.command(pass_context=True)
 async def fact(ctx):
-    await client.say(random.choice(facts))
+    await ctx.send(random.choice(facts))
 
 @client.command(pass_context=True)
 async def magicball(ctx):
-    await client.say("🍇*Shaking magic tail...*✨")
+    await ctx.send("🍇*Shaking magic tail...*✨")
     time.sleep(1)
-    await client.say("🍇*Wiggling nose...*🦊")
+    await ctx.send("🍇*Wiggling nose...*🦊")
     time.sleep(1)
-    await client.say("🍇*Checking grapes...*🍇")
+    await ctx.send("🍇*Checking grapes...*🍇")
     time.sleep(2)
-    await client.say(random.choice(choices))
+    await ctx.send(random.choice(choices))
 
 # Checks for a string and reacts
 @client.event
 async def on_message(message):
 
     if "gay" in message.content.lower():
-        await client.add_reaction(message, '🌈')
+        await message.add_reaction('🌈')
 
     if "grape" in message.content.lower():
-        await client.add_reaction(message, "🍇")
+        await message.add_reaction("🍇")
 
     if "fox" in message.content.lower():
-        await client.add_reaction(message, "🦊")
+        await message.add_reaction("🦊")
     await client.process_commands(message) # Without this command, no other commands will be processed!
 
 # Token for bot login
