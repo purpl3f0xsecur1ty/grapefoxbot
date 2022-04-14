@@ -9,9 +9,10 @@ from discord.ext import commands
 description = 'Test Bot'
 bot_prefix = 'fox!'
 
-client = commands.Bot(description=description, command_prefix=bot_prefix)
+client = commands.Bot(description=description, command_prefix=bot_prefix, help_command=None)
 
 # String arrays for reactions
+gay_strings = ['gay', 'thats gay', 'that\'s gay','you\'re gay']
 choices = [
     "💜**Definitely!**💜",
     "🦊**Maybe**🦊",
@@ -49,7 +50,8 @@ facts = [
     "Foxes fancy the color purple the most."
 ]
 
-# Confirm login, print servers
+# Prints info to the command line
+# Verifies successful connection to Discord
 
 @client.event
 async def on_ready():
@@ -57,8 +59,8 @@ async def on_ready():
     print('Name : {}'.format(client.user.name))
     print('ID : {}'.format(client.user.id))
     print(discord.__version__)
-    for server in client.guilds:  # List connected servers
-        print('Joined: {}'.format(server.name))
+    for guild in client.guilds:  # List connected servers
+        print('Joined: {}'.format(guild.name))
 
 
 # Commands starting with fox! go here
@@ -66,7 +68,7 @@ async def on_ready():
 @client.command(pass_context=True)
 async def info(ctx):
     await ctx.send("I am grape fox!\n"
-                     "Author: **Zepher-Tensho**\n"
+                     "Author: **Zephy FOxy**\n"
                      "Written in **Python 3.6**\n"
                      "For a list of current commands type `!commands`"
                      "Note: This bot is experimental and is often offline.")
@@ -107,14 +109,14 @@ async def magicball(ctx):
     await ctx.send("🍇*Wiggling nose...*🦊")
     time.sleep(1)
     await ctx.send("🍇*Checking grapes...*🍇")
-    time.sleep(2)
+    time.sleep(1)
     await ctx.send(random.choice(choices))
 
 # Checks for a string and reacts
 @client.event
 async def on_message(message):
 
-    if "gay" in message.content.lower():
+    if message.content.lower() in gay_strings:
         await message.add_reaction('🌈')
 
     if "grape" in message.content.lower():
@@ -122,8 +124,10 @@ async def on_message(message):
 
     if "fox" in message.content.lower():
         await message.add_reaction("🦊")
+
+    if "mika" in message.content.lower():
+        await message.add_reaction("💜")
+
     await client.process_commands(message) # Without this command, no other commands will be processed!
 
-# Token for bot login
-# Note that this line must come LAST!
-client.run('')
+client.run()
